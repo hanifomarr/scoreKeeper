@@ -1,39 +1,41 @@
-const p1Button = document.querySelector('#p1Button');
-const p2Button = document.querySelector('#p2Button');
-const p1Display = document.querySelector('#p1Display');
-const p2Display = document.querySelector('#p2Display');
-const resetButton = document.querySelector('#reset');
-const winningScoreSelect = document.querySelector('#winningScoreSelect')
+const p1 = {
+    button: document.querySelector('#p1Button'),
+    display: document.querySelector('#p1Display'),
+    score: 0,
+}
 
-let p1Score = 0;
-let p2Score = 0;
+const p2 = {
+    button: document.querySelector('#p2Button'),
+    display: document.querySelector('#p2Display'),
+    score: 0,
+}
+
+const resetButton = document.querySelector('#reset');
+const winningScoreSelect = document.querySelector('#winningScoreSelect');
+
 let winningScore = null;
 let isGameOver = false;
 
-p1Button.addEventListener('click', function(){
+function updateScores(player, opponent){
     if(!isGameOver && winningScore != null){
-        p1Score += 1;
-        if(p1Score === winningScore){
-            p1Display.classList.add('win')
-            p2Display.classList.add('lose')
+        player.score += 1;
+        if(player.score === winningScore){
+            player.display.classList.add('win')
+            opponent.display.classList.add('lose')
             isGameOver = true;
+            player.button.classList.add('cursor-not-allowed')
+            opponent.button.classList.add('cursor-not-allowed')
         }
-        p1Display.textContent = p1Score;
-    }
-    
+        player.display.textContent = player.score;
+    } 
+}
+
+p1.button.addEventListener('click', function(){
+    updateScores(p1,p2)
 })
 
-p2Button.addEventListener('click', function(){
-    if(!isGameOver && winningScore != null){
-        p2Score += 1;
-        if(p2Score === winningScore){
-            p2Display.classList.add('win')
-            p1Display.classList.add('lose')
-            isGameOver = true;
-        }
-        p2Display.textContent = p2Score;
-    }
-    
+p2.button.addEventListener('click', function(){
+    updateScores(p2,p1)
 })
 
 resetButton.addEventListener('click', reset)
@@ -44,11 +46,11 @@ winningScoreSelect.addEventListener('change', function(){
 })
 
 function reset(){
-    p1Score = 0;
-    p2Score = 0;
-    p1Display.textContent = 0;
-    p2Display.textContent = 0;
     isGameOver = false;
-    p2Display.classList.remove('win', 'lose')
-    p1Display.classList.remove('win', 'lose')
+    for(p of [p1,p2]){
+        p.score = 0;
+        p.display.textContent = 0;
+        p.display.classList.remove('win', 'lose')
+        p.button.classList.remove('cursor-not-allowed')
+    }
 }
