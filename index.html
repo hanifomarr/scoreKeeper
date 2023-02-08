@@ -5,18 +5,40 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
     <title>ScoreBoard</title>
 </head>
 <body>
-    <h1><span id="p1Display">0</span> of <span id="p2Display">0</span></h1>
-    <select name="" id="winningScoreSelect">
-        <option value="">Select Winning Score</option>
-        <option value="3">3</option>
-        <option value="6">6</option>
-    </select>
-    <button id="p1Button">Player 1</button>
-    <button id="p2Button">Player 2</button>
-    <button id="reset">Reset</button>
+
+    <div class="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+        <div class="w-full max-w-md space-y-8">
+          <div>
+            <img class="mx-auto h-12 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="Your Company">
+            <h1 class="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">ScoreBoard</h1>
+            <h2 class="mt-6 text-center text-2xl font-bold tracking-tight text-gray-900"><span id="p1Display">0</span> of <span id="p2Display">0</span></h2>
+          </div>
+
+          <div class="flex itmes-center justify-center">
+            <label for="winnngScore">Winning Score</label>
+            <select name="winnngScore" id="winningScoreSelect">
+                <option value="">Select Winning Score</option>
+                <option value="3">3</option>
+                <option value="6">6</option>
+            </select>
+            
+          </div>
+
+          
+
+          <div class="mt-10 flex items-center justify-center gap-x-6 lg:justify-center">
+            <button class="group relative flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" id="p1Button">Player 1</button>
+            <button class="group relative flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" id="p2Button">Player 2</button>
+            <button class="group relative flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2" id="reset">Reset</button>
+          </div>
+
+        </div>
+    </div>
+    
     <script src="./app.js"></script>
 </body>
 </html>
